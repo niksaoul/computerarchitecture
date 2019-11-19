@@ -1,0 +1,1 @@
+The .c program that we wrote implements a 3x3 matrix multiplication (matrix are random generated). The source file and the arm-compiled program are included in Source. The results of simulation are all included in Simulation Results. Detailed answer to Ex3.a is included in README.md. 

@@ -1,0 +1,1 @@
+The sample "Hello World" C program was executed. The results of simulation are in "Simulation Results" folder, while the .c file is in the "Source" folder. Detailed answer to Ex1 is included in README.md.
