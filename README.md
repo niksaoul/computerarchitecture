@@ -146,8 +146,7 @@ Information was found [here](www.gem5.org/docs/html/minor.html) and [here](https
      host_seconds: 0.13
      sim_seconds: 0.000059
      ```
-We can see that the CPI for the 4GHz drops almost two times. As the frequency increases by a factor of 4, the second simulation is expected to be two times faster. That is varified by the reduction in `sim_seconds`.
-
+       * We can see that the CPI for the 4GHz drops almost two times. As the frequency increases by a factor of 4, the second simulation is expected to be two times faster. That is varified by the reduction in `sim_seconds`.
      * ##### Memory type:
       * ###### DDR3_2133_8x8
         * **MinorCPU**:
