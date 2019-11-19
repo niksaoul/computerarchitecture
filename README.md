@@ -88,6 +88,7 @@ The model **isn't currently capable of multithreading** but there are THREAD com
 Information was found [here](www.gem5.org/docs/html/minor.html) and [here](https://nitish2112.github.io/post/gem5-minor-cpu/?fbclid=IwAR0rskGeqQd_bbNh11TNbfjJcAUT6g3vTP7JguEPi1YpU9QBtlYCQ2mABtE).
 
  * ##### Simple CPU
+ The SimpleCPU is a purely functional, in-order model that is suited for cases where a detailed model is not necessary. This can include warm-up periods, client systems that are driving a host, or just testing to make sure a program works.
   * ###### Base Simple CPU
     * The BaseSimpleCPU serves several purposes:
     * Holds architected state, stats common across the SimpleCPU models.
@@ -109,7 +110,7 @@ Information was found [here](www.gem5.org/docs/html/minor.html) and [here](https
   * MinorCPU: sim_seconds: **0.000058** sim_seconds
   Thus, MinorCPU is faster.
  * #### 3b) Comparison of more parameters
- Examining the stats.txt files of both processes. The _"host"_ variables `host_inst_rate`, `host_op_rate` and  `host_tick_rate` are greater in TimingSimpleCPU, making the value of `host_seconds` greater in MinorCPU. However, `sim_seconds`, `sim_ticks` have larger values in TimingSimpleCPU. That happens because MinorCPU is more complicated, making the simulation process in the host more time consuming. Besides, as mentioned above, timing accesses are the most detailed access, including the modeling of queuing delay and resource contention.
+ Examining the stats.txt files of both processes, we can conclude that the _"host"_ variables `host_inst_rate`, `host_op_rate` and  `host_tick_rate` are greater in TimingSimpleCPU, making the value of `host_seconds` greater in MinorCPU. However, `sim_seconds`, `sim_ticks` have larger values in TimingSimpleCPU. That happens because MinorCPU is more complicated, making the simulation process in the host more time consuming. Besides, as mentioned above, timing accesses are the most detailed access, including the modeling of queuing delay and resource contention. Finally, MinorCPU implements branch-prediction, while TimingSimpleCPU doesn't ([source](https://personal.utdallas.edu/~gxm112130/EE6304FA17/project2.pdf?fbclid=IwAR2ff3Kxnzb_Z9BI2gNhRZp6EFlOGktGyjFNGMMV9J8E57u8Ji0H2f9ZdSs), page 2).
 
  * #### 3c) More tests with different frequency and memory type
   * ##### Frequency:
@@ -180,3 +181,4 @@ We can see that the CPI for the 4GHz drops almost two times. As the frequency in
         host_seconds: 0.1
         sim_seconds: 0.000092
         ```
+The results may seem absurd at first sight. However, our guess is that it's due to fact that DDR4 has slightly higher [latency](https://www.wepc.com/reviews/ddr3-vs-ddr4/?fbclid=IwAR0PZtmJ4COhFNRdYGDID9vWobj0ok2zd-FpJ5TInGoMa3QjUYeur6wl92Y) when it comes to simple tasks (like our program!). Moreover, we have chosen the highest frequency DDR3 available, comparing it with a relatively low speed DDR4. In a scenario in which the frequency difference is higher, we assume that the DDR4 memory would outperform DDR3.
