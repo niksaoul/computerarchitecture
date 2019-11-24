@@ -1,3 +1,7 @@
+## Computer Architecture 
+### ECE AuTh, semester 7
+### Authors: _Saoulidis Nikolaos, Theodoros Papageorgiou_ 
+
 #### 1. Basic simulation parameters
 Most important parameters, as described in `starter_se.py` and `devices.py` are:
 * Type of CPU : MinorCPU
@@ -73,7 +77,6 @@ By comparing the lines above (from `config.ini`) with [this document](https://gi
 ```
 318: size=1024
 ```
-*
 #### 3. In order CPUs
 "In-order" refers to in-order instruction execution, meaning that instructions are executed in the order they "arrive" to the CPU.
  * ##### Minor CPU model
