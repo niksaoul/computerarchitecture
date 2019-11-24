@@ -113,71 +113,71 @@ Information was found [here](www.gem5.org/docs/html/minor.html) and [here](https
  Examining the stats.txt files of both processes, we can conclude that the _"host"_ variables `host_inst_rate`, `host_op_rate` and  `host_tick_rate` are greater in TimingSimpleCPU, making the value of `host_seconds` greater in MinorCPU. However, `sim_seconds`, `sim_ticks` have larger values in TimingSimpleCPU. That happens because MinorCPU is more complicated, making the simulation process in the host more time consuming. Besides, as mentioned above, timing accesses are the most detailed access, including the modeling of queuing delay and resource contention. Finally, MinorCPU implements branch-prediction, while TimingSimpleCPU doesn't ([source](https://personal.utdallas.edu/~gxm112130/EE6304FA17/project2.pdf?fbclid=IwAR2ff3Kxnzb_Z9BI2gNhRZp6EFlOGktGyjFNGMMV9J8E57u8Ji0H2f9ZdSs), page 2).
 
 * #### 3c) More tests with different frequency and memory type
- * ##### Frequency:
-  * ###### 1GHz
-   * **MinorCPU**:
-   ```
-   host_inst_rate: 154337
-   host_op_rate: 182901
-   host_seconds: 0.27
-   sim_seconds: 0.000085
-   system.cpu.cpi: 2.016168
-   ```
-   * **TimingSimpleCPU**:
-   ```
-   host_inst_rate: 469919
-   host_op_rate: 55402
-   host_seconds: 0.09
-   sim_seconds: 0.000156
-   ```
-  * ###### 4GHz
-   * **MinorCPU**:
-   ```
-   host_inst_rate: 138295
-   host_op_rate: 16899
-   host_seconds: 0.3
-   sim_seconds: 0.000045
-   system.cpu.cpi: 4.256399
-   ```
-   * **TimingSimpleCPU**:
-   ```
-   host_inst_rate: 320471
-   host_op_rate: 377844
-   host_seconds: 0.13
-   sim_seconds: 0.000059
-   ```
-   * We can see that the CPI for the 4GHz drops almost two times. As the frequency increases by a factor of 4, the second simulation is expected to be two times faster. That is varified by the reduction in `sim_seconds`.
- * ##### Memory type:
-  * ###### DDR3_2133_8x8
-   * **MinorCPU**:
-   ```
-   host_inst_rate: 160378
-   host_op_rate: 190030
-   host_seconds: 0.26
-   sim_seconds: 0.000057
-   system.cpu.cpi: 2.709765
-   ```
-   * **TimingSimpleCPU**:
-   ```
-   host_inst_rate: 554813
-   host_op_rate: 653789
-   host_seconds: 0.08
-   sim_seconds: 0.000090
-   ```
-  * ###### DDR4_2400_4x16
-   * **MinorCPU**:
-   ```
-   host_inst_rate: 138414
-   host_op_rate: 163933
-   host_seconds: 0.3
-   sim_seconds: 0.000058
-   system.cpu.cpi: 2.771769
-   ```
-   * **TimingSimpleCPU**:
-   ```
-   host_inst_rate: 415361
-   host_op_rate: 489760
-   host_seconds: 0.1
-   sim_seconds: 0.000092
-   ```
-   * The results may seem absurd at first sight. However, our guess is that it's due to fact that DDR4 has slightly higher [latency](https://www.wepc.com/reviews/ddr3-vs-ddr4/?fbclid=IwAR0PZtmJ4COhFNRdYGDID9vWobj0ok2zd-FpJ5TInGoMa3QjUYeur6wl92Y) when it comes to simple tasks (like our program!). Moreover, we have chosen the highest frequency DDR3 available, comparing it with a relatively low speed DDR4. In a scenario in which the frequency difference is higher, we assume that the DDR4 memory would outperform DDR3.
+  * ##### **Frequency**:
+   * ###### 1GHz
+    * **MinorCPU**:
+    ```
+    host_inst_rate: 154337
+    host_op_rate: 182901
+    host_seconds: 0.27
+    sim_seconds: 0.000085
+    system.cpu.cpi: 2.016168
+    ```
+    * **TimingSimpleCPU**:
+    ```
+    host_inst_rate: 469919
+    host_op_rate: 55402
+    host_seconds: 0.09
+    sim_seconds: 0.000156
+    ```
+   * ###### 4GHz
+    * **MinorCPU**:
+    ```
+    host_inst_rate: 138295
+    host_op_rate: 16899
+    host_seconds: 0.3
+    sim_seconds: 0.000045
+    system.cpu.cpi: 4.256399
+    ```
+    * **TimingSimpleCPU**:
+    ```
+    host_inst_rate: 320471
+    host_op_rate: 377844
+    host_seconds: 0.13
+    sim_seconds: 0.000059
+    ```
+    * We can see that the CPI for the 4GHz drops almost two times. As the frequency increases by a factor of 4, the second simulation is expected to be two times faster. That is varified by the reduction in `sim_seconds`.
+  * ##### **Memory type**:
+   * ###### DDR3_2133_8x8
+    * **MinorCPU**:
+    ```
+    host_inst_rate: 160378
+    host_op_rate: 190030
+    host_seconds: 0.26
+    sim_seconds: 0.000057
+    system.cpu.cpi: 2.709765
+    ```
+    * **TimingSimpleCPU**:
+    ```
+    host_inst_rate: 554813
+    host_op_rate: 653789
+    host_seconds: 0.08
+    sim_seconds: 0.000090
+    ```
+   * ###### DDR4_2400_4x16
+    * **MinorCPU**:
+    ```
+    host_inst_rate: 138414
+    host_op_rate: 163933
+    host_seconds: 0.3
+    sim_seconds: 0.000058
+    system.cpu.cpi: 2.771769
+    ```
+    * **TimingSimpleCPU**:
+    ```
+    host_inst_rate: 415361
+    host_op_rate: 489760
+    host_seconds: 0.1
+    sim_seconds: 0.000092
+    ```
+    * The results may seem absurd at first sight. However, our guess is that it's due to fact that DDR4 has slightly higher [latency](https://www.wepc.com/reviews/ddr3-vs-ddr4/?fbclid=IwAR0PZtmJ4COhFNRdYGDID9vWobj0ok2zd-FpJ5TInGoMa3QjUYeur6wl92Y) when it comes to simple tasks (like our program!). Moreover, we have chosen the highest frequency DDR3 available, comparing it with a relatively low speed DDR4. In a scenario in which the frequency difference is higher, we assume that the DDR4 memory would outperform DDR3.
