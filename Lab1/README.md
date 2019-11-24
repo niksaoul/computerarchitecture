@@ -8,10 +8,10 @@ Most important parameters, as described in `starter_se.py` and `devices.py` are:
 * Number of Memory ranks / channel : None (_meaning that it doesn't take a default value_)
 * Physical Memory size: 2GB
 * Caches
- * L1 Data Cache: 32kB
- * L1 Instruction Cache: 48kB
- * WalkCache: 1kB
- * L2 Cache: 1MB
+  * L1 Data Cache: 32kB
+  * L1 Instruction Cache: 48kB
+  * WalkCache: 1kB
+  * L2 Cache: 1MB
 
 Every parameter, except for _Type of CPU_ which was declared as _MinorCPU_, has the default value, as defined in starte_se.py.
 
@@ -106,8 +106,8 @@ Information was found [here](www.gem5.org/docs/html/minor.html) and [here](https
 
 * #### 3a) Time of execution (Timing vs Minor)
  * TimingSimpleCPU: sim_seconds:  **0.000091** seconds
- * MinorCPU: sim_seconds: **0.000058** sim_seconds
-  Thus, MinorCPU is faster.
+ * MinorCPU: sim_seconds: **0.000058** sim_seconds  
+   Thus, MinorCPU is faster.
 
 * #### 3b) Comparison of more parameters
  Examining the stats.txt files of both processes, we can conclude that the _"host"_ variables `host_inst_rate`, `host_op_rate` and  `host_tick_rate` are greater in TimingSimpleCPU, making the value of `host_seconds` greater in MinorCPU. However, `sim_seconds`, `sim_ticks` have larger values in TimingSimpleCPU. That happens because MinorCPU is more complicated, making the simulation process in the host more time consuming. Besides, as mentioned above, timing accesses are the most detailed access, including the modeling of queuing delay and resource contention. Finally, MinorCPU implements branch-prediction, while TimingSimpleCPU doesn't ([source](https://personal.utdallas.edu/~gxm112130/EE6304FA17/project2.pdf?fbclid=IwAR2ff3Kxnzb_Z9BI2gNhRZp6EFlOGktGyjFNGMMV9J8E57u8Ji0H2f9ZdSs), page 2).
